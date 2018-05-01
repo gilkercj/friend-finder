@@ -163,9 +163,7 @@
 var url = window.location.origin;
 
         $.post(url + "/api/friends", newFriend,
-            function (data, body) {
-               
-                console.log( "??" + data + " " + body)
+            function (data) {
             
            $("#modal-name").text(data.name);
            $("#modal-picture").attr("src", data.photo);

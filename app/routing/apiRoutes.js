@@ -14,17 +14,17 @@ module.exports = function (app) {
         var bestFriend = {
             name: "",
             photo: "",
-            dif: 100,
+            dif: 10000,
         };
 
 
         var newFriend = req.body;
         var dif = 0;
         for (var i = 0; i < friends.length; i++) {
-            console.log(friends[i])
+            console.log(friends[i]);
             dif = 0
             for (var j = 0; j < friends[i].scores[j].length; j++) {
-                dif = Math.abs(parseInt(newFriend.scores[j] - friends[i].scores[j]));
+                dif = Math.abs(parseInt(newFriend.scores[j]) - parseInt(friends[i].scores[j]));
                 console.log(friends[i]);
                 if (dif < bestFriend.dif) {
                     bestFriend.name = friends[i].name;
