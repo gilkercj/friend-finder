@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Reservation Page</title>
+    <title>Survey</title>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
 
         <div class="jumbotron">
             <h1 class="text-center">
-                <span class="glyphicon glyphicon-fire"></span>Friend Finder</h1>
+                <span ></span>Friend Finder</h1>
             <hr>
 
 
@@ -111,24 +111,24 @@
 
     </div>
 
-    <div class="modal fade" tabindex="-1" id="my-modal" role="dialog">
-            <div class="modal-dialog" role="document">
+    <div class="modal fade" id="friend-modal" role="dialog">
+            <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">YOur new friend</h4>
+                  <h4 class="modal-title">Your new friend</h4>
                 </div>
                 <div class="modal-body">
                   <p id="modal-name"></p>
-                  <p id="modal-picture"></p>
+                  <img id="modal-picture" src="" alt="A picture of your new best friend">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+
                 </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+              </div>
+            </div>
+          </div>
 
 </body>
 
@@ -160,28 +160,16 @@
 
         console.log(newFriend);
 
-        $.post("/api/friends", newFriend,
-            function (data) {
-                if (data) {
+var url = window.location.origin;
 
-            alert("");
-          }
-
-
-
-                // Clear the form when submitting
-                $("#friend-name").val("");
-                $("#friend-picture").val("");
-                $("#q1").val("5");
-                $("#q2").val("5");
-                $("#q3").val("5");
-                $("#q4").val("5");
-                $("#q5").val("5");
-                $("#q6").val("5");
-                $("#q7").val("5");
-                $("#q8").val("5");
-                $("#q9").val("5");
-                $("#q10").val("5");
+        $.post(url + "/api/friends", newFriend,
+            function (data, body) {
+               
+                console.log( "??" + data + " " + body)
+            
+           $("#modal-name").text(data.name);
+           $("#modal-picture").attr("src", data.photo);
+           $("#friend-modal").modal("toggle");
 
             });
 
