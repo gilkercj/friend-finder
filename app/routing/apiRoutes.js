@@ -21,8 +21,12 @@ module.exports = function (app) {
         var newFriend = req.body;
         var dif = 0;
         for (var i = 0; i < friends.length; i++) {
+
             console.log(friends[i]);
             dif = 0
+
+            // loop finds the difference value between your survey input and theirs 
+            // outputs the friend with highest compatability
             for (var j = 0; j < friends[i].scores[j].length; j++) {
                 dif = Math.abs(parseInt(newFriend.scores[j]) - parseInt(friends[i].scores[j]));
                 console.log(friends[i]);
